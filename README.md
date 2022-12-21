@@ -16,7 +16,12 @@
 -->
 # Singleton Test Project
 
-Create Mutation coverage via:
+The default singleton pattern which is often propagated is simply not thread safe 
+which means it does not fulfil the basic idea of the Singleton pattern.
+
+There two working solutions which are the `SingletonEnum` version or one which
+contains a synchronized locking via separate object.
+
 
 ```
 mvn clean verify org.pitest:pitest-maven:mutationCoverage
