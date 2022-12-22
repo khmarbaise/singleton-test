@@ -30,37 +30,40 @@ class SingletonTest {
 
   @Test
   void multiThreadEnum() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(i -> new AClassSomeWhereEnum(i)).collect(toList());
+    var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhereEnum::new).toList();
     var listOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhereEnum::getUuid, mapping(AClassSomeWhereEnum::getId, toList())));
-    listOfExecutedSingletons.entrySet().stream().forEach(
+    listOfExecutedSingletons.entrySet().forEach(
         s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
     );
+    //intentionally no assertThat(..)...
 
   }
 
   @Test
   void multiThread() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(i -> new AClassSomeWhere(i)).collect(toList());
+    var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhere::new).toList();
     var listOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhere::getUuid, mapping(AClassSomeWhere::getId, toList())));
-    listOfExecutedSingletons.entrySet().stream().forEach(
+    listOfExecutedSingletons.entrySet().forEach(
         s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
     );
+    //intentionally no assertThat(..)...
 
   }
 
   @Test
   void multiThreadLock() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(i -> new AClassSomeWhereSynchronizedLock(i)).collect(toList());
+    var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhereSynchronizedLock::new).toList();
     var listOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhereSynchronizedLock::getUuid, mapping(AClassSomeWhereSynchronizedLock::getId, toList())));
-    listOfExecutedSingletons.entrySet().stream().forEach(
+    listOfExecutedSingletons.entrySet().forEach(
         s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
     );
+    //intentionally no assertThat(..)...
 
   }
 }
