@@ -21,7 +21,7 @@ is simply not thread safe which means it does not fulfil the basic idea of the S
 pattern.
 
 There are two working solutions which are either `SingletonEnum` version or one which
-contains a synchronized locking via separate object (`MainSynchronizedLock`).
+contains a synchronized locking via separate object (`SingletonWithSynchronizedLock`).
 
 you can build the project with the following requirements:
 
