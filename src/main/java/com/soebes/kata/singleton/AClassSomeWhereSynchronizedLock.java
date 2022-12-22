@@ -2,16 +2,16 @@ package com.soebes.kata.singleton;
 
 import java.util.UUID;
 
-public class AClassSomeWhereLock {
+public class AClassSomeWhereSynchronizedLock {
 
   private long id;
 
-  public AClassSomeWhereLock(long id) {
+  public AClassSomeWhereSynchronizedLock(long id) {
     this.id = id;
   }
 
   public UUID getUuid() {
-    return SingletonWithLock.getInstance().getUuid();
+    return SingletonWithSynchronizedLock.getInstance().getUuid();
   }
 
   public long getId() {

@@ -21,7 +21,7 @@ is simply not thread safe which means it does not fulfil the basic idea of the S
 pattern.
 
 There are two working solutions which are either `SingletonEnum` version or one which
-contains a synchronized locking via separate object (`SingletonWithLock`).
+contains a synchronized locking via separate object (`MainSynchronizedLock`).
 
 you can build the project with the following requirements:
 
@@ -79,7 +79,7 @@ the `SingletonWithLock` to make sure having only a single instance within the wh
 
 This example can be executed via:
 ```
-$ java -cp target/example-minimal-1.0-SNAPSHOT.jar com.soebes.kata.singleton.MainLock 
+$ java -cp target/example-minimal-1.0-SNAPSHOT.jar com.soebes.kata.singleton.MainSynchronizedLock 
 ```
 which will result in the following output:
 ```

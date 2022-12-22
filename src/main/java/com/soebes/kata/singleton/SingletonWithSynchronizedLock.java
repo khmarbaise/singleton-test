@@ -4,14 +4,14 @@ import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
-public class SingletonWithLock {
-  private static SingletonWithLock instance;
+public class SingletonWithSynchronizedLock {
+  private static SingletonWithSynchronizedLock instance;
 
   private static final Object lock = new Object();
 
   private UUID uuid;
 
-  private SingletonWithLock() {
+  private SingletonWithSynchronizedLock() {
     this.uuid = UUID.randomUUID();
   }
 
@@ -19,10 +19,10 @@ public class SingletonWithLock {
     return uuid;
   }
 
-  public static SingletonWithLock getInstance() {
+  public static SingletonWithSynchronizedLock getInstance() {
     synchronized (lock) {
       if (isNull(instance)) {
-        instance = new SingletonWithLock();
+        instance = new SingletonWithSynchronizedLock();
       }
     }
     return instance;

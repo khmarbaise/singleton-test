@@ -36,10 +36,10 @@ class SingletonTest {
 
   @Test
   void multiThreadLock() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(i -> new AClassSomeWhereLock(i)).collect(toList());
+    var listOfInstances = IntStream.range(0, 1000000).mapToObj(i -> new AClassSomeWhereSynchronizedLock(i)).collect(toList());
     var listOfExecutedSingletons = listOfInstances
         .parallelStream()
-        .collect(groupingBy(AClassSomeWhereLock::getUuid, mapping(AClassSomeWhereLock::getId, toList())));
+        .collect(groupingBy(AClassSomeWhereSynchronizedLock::getUuid, mapping(AClassSomeWhereSynchronizedLock::getId, toList())));
     listOfExecutedSingletons.entrySet().stream().forEach(
         s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
     );
