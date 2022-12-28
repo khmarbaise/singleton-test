@@ -25,45 +25,34 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class SingletonTest {
 
   @Test
-  void multiThreadEnum() {
+  void multiThreadWithEnumSingleton() {
     var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhereEnum::new).toList();
-    var listOfExecutedSingletons = listOfInstances
+    var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhereEnum::getUuid, mapping(AClassSomeWhereEnum::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
-    //intentionally no assertThat(..)...
-
+    assertThat(mapOfExecutedSingletons).hasSize(1);
   }
 
   @Test
-  void multiThread() {
+  void multiThreadWithOldSingleton() {
     var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhere::new).toList();
-    var listOfExecutedSingletons = listOfInstances
+    var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhere::getUuid, mapping(AClassSomeWhere::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
-    //intentionally no assertThat(..)...
-
+    assertThat(mapOfExecutedSingletons).hasSize(1);
   }
 
   @Test
-  void multiThreadLock() {
+  void multiThreadWithLockedSingleton() {
     var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhereSynchronizedLock::new).toList();
-    var listOfExecutedSingletons = listOfInstances
+    var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhereSynchronizedLock::getUuid, mapping(AClassSomeWhereSynchronizedLock::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
-    //intentionally no assertThat(..)...
-
+    assertThat(mapOfExecutedSingletons).hasSize(1);
   }
 }
