@@ -22,7 +22,7 @@ import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
-public class Singleton {
+public final class Singleton {
   private static Singleton instance;
 
   private UUID uuid;

@@ -27,11 +27,12 @@ import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SingletonTest {
+class
+SingletonTest {
 
   @Test
   void multiThreadWithEnumSingleton() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhereEnum::new).toList();
+    var listOfInstances = IntStream.range(0, 1_000_000).mapToObj(AClassSomeWhereEnum::new).toList();
     var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhereEnum::getUuid, mapping(AClassSomeWhereEnum::getId, toList())));
@@ -40,7 +41,7 @@ class SingletonTest {
 
   @Test
   void multiThreadWithOldSingleton() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhere::new).toList();
+    var listOfInstances = IntStream.range(0, 1_000_000).mapToObj(AClassSomeWhere::new).toList();
     var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhere::getUuid, mapping(AClassSomeWhere::getId, toList())));
@@ -49,7 +50,7 @@ class SingletonTest {
 
   @Test
   void multiThreadWithLockedSingleton() {
-    var listOfInstances = IntStream.range(0, 1000000).mapToObj(AClassSomeWhereSynchronizedLock::new).toList();
+    var listOfInstances = IntStream.range(0, 1_000_000).mapToObj(AClassSomeWhereSynchronizedLock::new).toList();
     var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhereSynchronizedLock::getUuid, mapping(AClassSomeWhereSynchronizedLock::getId, toList())));

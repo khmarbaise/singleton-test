@@ -22,7 +22,7 @@ import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
-public class SingletonWithSynchronizedLock {
+public final class SingletonWithSynchronizedLock {
   private static SingletonWithSynchronizedLock instance;
 
   private static final Object lock = new Object();
