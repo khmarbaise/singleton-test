@@ -18,7 +18,7 @@
  */
 package com.soebes.kata.singleton;
 
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
@@ -27,13 +27,12 @@ import static java.util.stream.Collectors.toList;
 public class MainEnum {
 
   public static void main(String[] args) {
-    var listOfInstances = IntStream.range(0, 1_000_000).mapToObj(AClassSomeWhereEnum::new).toList();
-    var listOfExecutedSingletons = listOfInstances
-        .parallelStream()
+    var listOfExecutedSingletons = LongStream.range(0, NumberOfRuns.NUMBER_OF_INSTANCES)
+        .parallel()
+        .mapToObj(AClassSomeWhereEnum::new)
         .collect(groupingBy(AClassSomeWhereEnum::getUuid, mapping(AClassSomeWhereEnum::getId, toList())));
     listOfExecutedSingletons.entrySet().forEach(
         s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
     );
-
   }
 }
