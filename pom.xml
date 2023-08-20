@@ -29,7 +29,7 @@
   <parent>
     <groupId>com.soebes.smpp</groupId>
     <artifactId>smpp</artifactId>
-    <version>5.3.14</version>
+    <version>6.0.3</version>
   </parent>
 
   <groupId>com.soebes.so.example.singleton</groupId>
@@ -55,14 +55,14 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.9.2</version>
+        <version>5.10.0</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-bom</artifactId>
-        <version>5.1.1</version>
+        <version>5.4.0</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -105,12 +105,12 @@
         <plugin>
           <groupId>org.pitest</groupId>
           <artifactId>pitest-maven</artifactId>
-          <version>1.11.3</version>
+          <version>1.14.3</version>
           <dependencies>
             <dependency>
               <groupId>org.pitest</groupId>
               <artifactId>pitest-junit5-plugin</artifactId>
-              <version>1.1.2</version>
+              <version>1.2.0</version>
             </dependency>
           </dependencies>
         </plugin>
