@@ -29,8 +29,8 @@ you can build the project with the following requirements:
 * Apache Maven 3.8.6+
 
 Just run:
-```
-$ mvn package
+```shell
+$ mvn package -DskipTests
 ```
 
 # Wrong Singleton
@@ -38,7 +38,7 @@ $ mvn package
 The following will execute the `Main.main` method which uses the `Singleton` (classical
 wrong implementation):
 
-```
+```shell
 $ java -cp target/example-minimal-1.0-SNAPSHOT.jar com.soebes.kata.singleton.Main 
 ```
 The above call will produce an output similar like this:
@@ -63,7 +63,7 @@ You can also run the execution with the `SingletonEnum` pattern which uses an
 `Enum` class as a singleton (There might be cases where you can't use an Enum
 because sometimes that will not work with an enum.)
 
-```
+```shell
 $ java -cp target/example-minimal-1.0-SNAPSHOT.jar com.soebes.kata.singleton.MainEnum 
 ```
 and the output will look like this:
@@ -78,7 +78,7 @@ And in cases where you can't use the previous enum pattern you have to implement
 the `SingletonWithLock` to make sure having only a single instance within the whole JVM.
 
 This example can be executed via:
-```
+```shell
 $ java -cp target/example-minimal-1.0-SNAPSHOT.jar com.soebes.kata.singleton.MainSynchronizedLock 
 ```
 which will result in the following output:
