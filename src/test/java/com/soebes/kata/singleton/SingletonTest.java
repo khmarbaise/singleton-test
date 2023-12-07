@@ -55,4 +55,13 @@ class SingletonTest {
         .collect(groupingBy(AClassSomeWhereSynchronizedLock::getUuid, mapping(AClassSomeWhereSynchronizedLock::getId, toList())));
     assertThat(mapOfExecutedSingletons).hasSize(1);
   }
+
+  @Test
+  void multiThreadWithHolderSingleton() {
+    var listOfInstances = IntStream.range(0, 1_000_000).mapToObj(AClassSomeWhereHolderSingleton::new).toList();
+    var mapOfExecutedSingletons = listOfInstances
+        .parallelStream()
+        .collect(groupingBy(AClassSomeWhereHolderSingleton::getUuid, mapping(AClassSomeWhereHolderSingleton::getId, toList())));
+    assertThat(mapOfExecutedSingletons).hasSize(1);
+  }
 }
