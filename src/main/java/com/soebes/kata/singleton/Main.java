@@ -31,9 +31,7 @@ public class Main {
         .parallel()
         .mapToObj(AClassSomeWhere::new)
         .collect(groupingBy(AClassSomeWhere::getUuid, mapping(AClassSomeWhere::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
+    listOfExecutedSingletons.forEach((key, value) -> System.out.println("k: " + key + " v:" + value.size()));
 
   }
 }
