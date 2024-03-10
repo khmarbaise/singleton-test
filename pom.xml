@@ -29,7 +29,7 @@
   <parent>
     <groupId>com.soebes.smpp</groupId>
     <artifactId>smpp</artifactId>
-    <version>6.0.4</version>
+    <version>6.0.5</version>
   </parent>
 
   <groupId>com.soebes.so.example.singleton</groupId>
@@ -47,7 +47,6 @@
 
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencyManagement>
