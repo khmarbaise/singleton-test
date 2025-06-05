@@ -31,8 +31,6 @@ public class MainSynchronizedLock {
         .parallel()
         .mapToObj(AClassSomeWhereSynchronizedLock::new)
         .collect(groupingBy(AClassSomeWhereSynchronizedLock::getUuid, mapping(AClassSomeWhereSynchronizedLock::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
+    listOfExecutedSingletons.forEach((key, value) -> System.out.println("k: " + key + " v:" + value.size()));
   }
 }

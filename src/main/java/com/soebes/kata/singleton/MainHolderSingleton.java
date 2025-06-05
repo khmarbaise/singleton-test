@@ -31,8 +31,6 @@ public class MainHolderSingleton {
         .parallel()
         .mapToObj(AClassSomeWhereHolderSingleton::new)
         .collect(groupingBy(AClassSomeWhereHolderSingleton::getUuid, mapping(AClassSomeWhereHolderSingleton::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
+    listOfExecutedSingletons.forEach((key, value) -> System.out.println("k: " + key + " v:" + value.size()));
   }
 }

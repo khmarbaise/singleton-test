@@ -31,8 +31,6 @@ public class MainEnum {
         .parallel()
         .mapToObj(AClassSomeWhereEnum::new)
         .collect(groupingBy(AClassSomeWhereEnum::getUuid, mapping(AClassSomeWhereEnum::getId, toList())));
-    listOfExecutedSingletons.entrySet().forEach(
-        s -> System.out.println("k: " + s.getKey() + " v:" + s.getValue().size())
-    );
+    listOfExecutedSingletons.forEach((key, value) -> System.out.println("k: " + key + " v:" + value.size()));
   }
 }
