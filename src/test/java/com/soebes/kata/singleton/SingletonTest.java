@@ -21,6 +21,7 @@ package com.soebes.kata.singleton;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
@@ -64,4 +65,14 @@ class SingletonTest {
         .collect(groupingBy(AClassSomeWhereHolderSingleton::getUuid, mapping(AClassSomeWhereHolderSingleton::getId, toList())));
     assertThat(mapOfExecutedSingletons).hasSize(1);
   }
+
+  @Test
+  void multiThreadWithVolatile() {
+    var listOfInstances = LongStream.range(0, 1_000_000).mapToObj(AClassSomeWhereWithVolatile::new).toList();
+    var mapOfExecutedSingletons = listOfInstances
+        .parallelStream()
+        .collect(groupingBy(AClassSomeWhereWithVolatile::getUuid, mapping(AClassSomeWhereWithVolatile::getId, toList())));
+    assertThat(mapOfExecutedSingletons).hasSize(1);
+  }
+
 }
