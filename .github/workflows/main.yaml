@@ -44,4 +44,6 @@ jobs:
           maven-version: 3.9.10
       - name: 'Build'
         shell: bash
+        env:
+          MAVEN_OPTS: --sun-misc-unsafe-memory-access=allow
         run: mvn -V --no-transfer-progress --color always verify --fail-at-end
