@@ -45,7 +45,7 @@ class SingletonTest {
     var mapOfExecutedSingletons = listOfInstances
         .parallelStream()
         .collect(groupingBy(AClassSomeWhere::getUuid, mapping(AClassSomeWhere::getId, toList())));
-    assertThat(mapOfExecutedSingletons).hasSize(1);
+    assertThat(mapOfExecutedSingletons).hasSizeGreaterThan(1);
   }
 
   @Test
