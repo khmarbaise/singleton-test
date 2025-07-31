@@ -47,6 +47,14 @@ class SingletonTest {
         .collect(groupingBy(AClassSomeWhere::getUuid, mapping(AClassSomeWhere::getId, toList())));
     assertThat(mapOfExecutedSingletons).hasSizeGreaterThan(1);
   }
+  @Test
+  void multiThreadWithSingletonWithoutLazyCheck() {
+    var listOfInstances = IntStream.range(0, 1_000_000).mapToObj(AClassSomeWhereNonLazyCheck::new).toList();
+    var mapOfExecutedSingletons = listOfInstances
+        .parallelStream()
+        .collect(groupingBy(AClassSomeWhereNonLazyCheck::getUuid, mapping(AClassSomeWhereNonLazyCheck::getId, toList())));
+    assertThat(mapOfExecutedSingletons).hasSizeGreaterThan(1);
+  }
 
   @Test
   void multiThreadWithLockedSingleton() {
